@@ -1,0 +1,270 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="MenuPage.master.cs" Inherits="MenuPage" %>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title></title>
+    <link href="css/Site.css" rel="stylesheet" type="text/css" />
+    <link href="css/EILDesign.css" rel="stylesheet" type="text/css" />
+    <link href="css/TabDesign.css" rel="stylesheet" type="text/css" />
+    <link href="css/ui-lightness/jquery-ui.css" rel="stylesheet" type="text/css" />
+    <link href="css/bootstrap.min.css" rel="stylesheet" />
+
+    <link href="jquery-ui-1.12.1/jquery-ui.css" rel="stylesheet" />
+    <style>
+        body {
+            font-family: "Trebuchet MS", sans-serif;
+            margin: 0px;
+        }
+
+        .demoHeaders {
+            margin-top: 2em;
+        }
+
+        #dialog-link {
+            padding: .4em 1em .4em 20px;
+            text-decoration: none;
+            position: relative;
+        }
+
+            #dialog-link span.ui-icon {
+                margin: 0 5px 0 0;
+                position: absolute;
+                left: .2em;
+                top: 50%;
+                margin-top: -8px;
+            }
+
+        #icons {
+            margin: 0;
+            padding: 0;
+        }
+
+            #icons li {
+                margin: 2px;
+                position: relative;
+                padding: 4px 0;
+                cursor: pointer;
+                float: left;
+                list-style: none;
+            }
+
+            #icons span.ui-icon {
+                float: left;
+                margin: 0 4px;
+            }
+
+        .fakewindowcontain .ui-widget-overlay {
+            position: absolute;
+        }
+
+        select {
+            width: 200px;
+        }
+    </style>
+
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+
+</head>
+
+<body>
+    <form id="Form1" runat="server">
+        <asp:ScriptManager ID="ScriptManager" runat="server">
+        </asp:ScriptManager>
+        <div id="background">
+        </div>
+        <table cellpadding="0" cellspacing="0" border="0" id="myTableMain">
+            <tr valign="top">
+                <td width="100%" style="height: 60px">
+                    <table cellpadding="0" cellspacing="0" id="myMiddleBannerTable">
+                        <tr valign="top">
+                            <td width="100%">
+                                <table cellpadding="0" cellspacing="0" id="myMiddleBrandBannerTable">
+                                    <tr valign="middle">
+                                        <td id="myMiddleBrandBanner" align="left" style="width: 70%">
+                                            <span id="Span1" class="myLoginTopFrame" style="width: 456px;">OSA System
+                                            </span>
+                                        </td>
+                                        <td align="right" style="padding-right: 20px">
+                                            <a href="UserManual.pdf" target="_blank" style="width: 30%"><b></b></a>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </td>
+                            <td id="myMiddleBrandBannerBlank" colspan="2">&nbsp;
+                            </td>
+                        </tr>
+                    </table>
+                    <table id="myBottomBannerTable" cellpadding="0" cellspacing="0">
+                        <tr>
+                            <td>
+                                <table cellpadding="0" cellspacing="0" id="myBottomBrandBannerTable">
+                                    <tr valign="middle" height="25">
+                                        <td id="myBottomBanner" align="right">&nbsp;
+                                        </td>
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+        </table>
+        <table width="90%" cellpadding="0" cellspacing="0" align="center" border="0">
+            <tr>
+                <td colspan="2">
+                    <asp:LoginView ID="HeadLoginView" runat="server" EnableViewState="false">
+                        <LoggedInTemplate>
+                            <table width="99%" cellpadding="0" cellspacing="0" align="center">
+                                <tr class="bold" style="background-color: #465c71; color: #dde4ec; height: 25px">
+                                    <td style="width: 90%">&nbsp;&nbsp;&nbsp;WELCOME <span>
+                                        <asp:Label ID="LoginName" runat="server"> </asp:Label>!</span>
+                                    </td>
+                                    <td style="width: 10%">
+                                        <asp:LoginStatus ID="HeadLoginStatus" runat="server" LogoutAction="Redirect" LogoutText="Log Out"
+                                            ForeColor="#dde4ec" LogoutPageUrl="Login.aspx" Font-Underline="false" OnLoggingOut="clear_cookies" />
+                                    </td>
+                                </tr>
+                            </table>
+                        </LoggedInTemplate>
+                    </asp:LoginView>
+                </td>
+            </tr>
+            <tr id="trMenu" runat="server">
+                <td colspan="2" class="clear hideSkiplink">
+                    <asp:Menu ID="NavigationMenu" runat="server" CssClass="menu" EnableViewState="false"
+                        IncludeStyleBlock="false" Orientation="Horizontal">
+                        <Items>
+                            <asp:MenuItem Text="OSA Entry" Value="osa_entry" NavigateUrl="osa_entry"></asp:MenuItem>
+                        </Items>
+                    </asp:Menu>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2" class="main">
+                    <asp:ContentPlaceHolder ID="MainContent" runat="server" />
+                </td>
+            </tr>
+        </table>
+    </form>
+</body>
+
+
+<script src="jquery-ui-1.12.1/external/jquery/jquery.js"></script>
+<script src="jquery-ui-1.12.1/jquery-ui.js"></script>
+<script>
+    function pageLoad(sender, args) {
+        $("#accordion").accordion();
+        var availableTags = [
+            "ActionScript",
+            "AppleScript",
+            "Asp",
+            "BASIC",
+            "C",
+            "C++",
+            "Clojure",
+            "COBOL",
+            "ColdFusion",
+            "Erlang",
+            "Fortran",
+            "Groovy",
+            "Haskell",
+            "Java",
+            "JavaScript",
+            "Lisp",
+            "Perl",
+            "PHP",
+            "Python",
+            "Ruby",
+            "Scala",
+            "Scheme"
+        ];
+        $("#autocomplete").autocomplete({
+            source: availableTags
+        });
+
+        $("#button").button();
+        $("#button-icon").button({
+            icon: "ui-icon-gear",
+            showLabel: false
+        });
+
+        $("#radioset").buttonset();
+
+        $("#controlgroup").controlgroup();
+
+        $("#tabs").tabs();
+
+        $("#dialog").dialog({
+            autoOpen: false,
+            width: 400,
+            buttons: [
+                {
+                    text: "Ok",
+                    click: function () {
+                        $(this).dialog("close");
+                    }
+                },
+                {
+                    text: "Cancel",
+                    click: function () {
+                        $(this).dialog("close");
+                    }
+                }
+            ]
+        });
+
+        // Link to open the dialog
+        $("#dialog-link").click(function (event) {
+            $("#dialog").dialog("open");
+            event.preventDefault();
+        });
+
+        $("#datepicker").datepicker({
+            inline: true
+        });
+
+
+
+        $("#slider").slider({
+            range: true,
+            values: [17, 67]
+        });
+
+
+
+        $("#progressbar").progressbar({
+            value: 20
+        });
+
+
+
+        $("#spinner").spinner();
+
+
+
+        $("#menu").menu();
+
+
+
+        $("#tooltip").tooltip();
+
+
+
+        $("#selectmenu").selectmenu();
+
+
+        // Hover states on the static widgets
+        $("#dialog-link, #icons li").hover(
+            function () {
+                $(this).addClass("ui-state-hover");
+            },
+            function () {
+                $(this).removeClass("ui-state-hover");
+            }
+        );
+    }
+</script>
+
+</html>
